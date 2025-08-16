@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pedidos SHEIN RD | Omii Shop</title>
+  <meta name="description" content="Página de pedidos para traer artículos de SHEIN a República Dominicana. Calculadora, formulario y contacto por WhatsApp." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b0b0c; --card:#141417; --muted:#9aa0a6; --text:#f5f7fb; --brand:#5be3b2; --brand-2:#89f0cb; --accent:#8ab4f8; --danger:#ff6b6b;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:linear-gradient(180deg,#0b0b0c, #111216 70%, #0e0f13);color:var(--text);font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+    a{color:var(--accent);text-decoration:none}
+    .container{max-width:1100px;margin:0 auto;padding:24px}
+    header{position:sticky;top:0;backdrop-filter:saturate(180%) blur(6px);background:rgba(11,11,12,.6);border-bottom:1px solid #1f2127;z-index:20}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:700}
+    .brand .dot{width:10px;height:10px;border-radius:50%;background:var(--brand);box-shadow:0 0 20px var(--brand)}
+    .pill{padding:8px 14px;border-radius:999px;border:1px solid #2a2d36;background:#121318}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 18px;border-radius:12px;border:1px solid #2a2d36;background:linear-gradient(180deg,#181a22,#121319);color:var(--text);font-weight:600;cursor:pointer}
+    .btn:hover{transform:translateY(-1px)}
+    .btn.primary{background:linear-gradient(180deg,var(--brand),var(--brand-2));color:#0b0b0c;border-color:transparent}
+    .grid{display:grid;gap:18px}
+    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:center;padding:36px 0}
+    .card{background:linear-gradient(180deg,#171821,#121318);border:1px solid #2a2d36;border-radius:20px;padding:18px}
+    h1{font-size: clamp(28px, 4vw, 42px);line-height:1.05;margin:8px 0}
+    h2{font-size: clamp(20px, 2.6vw, 28px);margin:0 0 8px}
+    p{color:var(--muted);margin:8px 0}
+    .badge{font-size:12px;border:1px solid #2a2d36;background:#101217;padding:6px 10px;border-radius:999px;color:var(--muted)}
+    .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .kpi{border:1px dashed #2a2d36;border-radius:16px;padding:12px;text-align:center}
+    .kpi strong{font-size:20px;display:block}
+    form{display:grid;gap:12px}
+    label{font-size:13px;color:var(--muted)}
+    input, select, textarea{width:100%;padding:12px 12px;border-radius:12px;border:1px solid #2a2d36;background:#0f1116;color:var(--text)}
+    input:focus, select:focus, textarea:focus{outline:2px solid #243353;border-color:#3a4353}
+    .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .three{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .muted{color:var(--muted)}
+    .divider{height:1px;background:#232633;margin:8px 0}
+    .footer{margin-top:40px;padding:32px 0;border-top:1px solid #232633;color:var(--muted);font-size:14px}
+    .toast{position:fixed;bottom:18px;right:18px;background:#0e1318;border:1px solid #234b3c;color:#d2ffe9;padding:12px 14px;border-radius:12px;display:none}
+    @media (max-width: 920px){
+      .hero{grid-template-columns:1fr}
+      .two,.three{grid-template-columns:1fr}
+      header .container{padding:12px 16px}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand"><span class="dot"></span> Omii SHEIN Pedidos</div>
+      <a class="pill" href="#form">Hacer pedido</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="card">
+        <span class="badge">Traemos tus artículos de SHEIN a RD</span>
+        <h1>Haz tu pedido rápido y seguro. <span style="color:var(--brand)">50% anticipo</span>, resto al entregar.</h1>
+        <p>Comparte el enlace del producto de SHEIN, elige talla/color y calcula tu total en pesos. Te confirmamos por WhatsApp.</p>
+        <div class="kpis">
+          <div class="kpi"><strong>24–48h</strong><span class="muted">Confirmación</span></div>
+          <div class="kpi"><strong>RD & US$</strong><span class="muted">Pagos mixtos</span></div>
+          <div class="kpi"><strong>+100</strong><span class="muted">Pedidos entregados</span></div>
+        </div>
+        <div style="margin-top:12px;display:flex;gap:12px;flex-wrap:wrap">
+          <a href="#form" class="btn primary">Hacer mi pedido</a>
+          <button id="btn-whatsapp-hero" class="btn" type="button">Chatear por WhatsApp</button>
+        </div>
+        <p class="muted" style="margin-top:8px;font-size:12px">No somos SHEIN. Ofrecemos servicio de compra y envío. Respetamos marcas y Términos de Uso.</p>
+      </div>
+      <div class="card">
+        <h2>¿Cómo funciona?</h2>
+        <ol style="line-height:1.9;color:var(--muted);padding-left:18px">
+          <li>Busca tu producto en <strong>SHEIN</strong> y copia el <em>enlace</em>.</li>
+          <li>Completa el formulario con talla, color y cantidad.</li>
+          <li>Calcula el total y envía tu pedido por WhatsApp.</li>
+          <li>Pagas 50% de anticipo. ¡Listo!</li>
+        </ol>
+        <div class="divider"></div>
+        <p class="muted" style="font-size:12px">Tip: agrega también el <strong>SKU</strong> si aparece en SHEIN para evitar errores.</p>
+      </div>
+    </section>
+
+    <!-- CALCULADORA & FORM -->
+    <section id="form" class="grid" style="grid-template-columns:1fr 1fr">
+      <!-- Calculadora -->
+      <div class="card">
+        <h2>Calculadora</h2>
+        <p class="muted">Usa la tasa del dólar de hoy o ajusta manualmente.</p>
+        <div class="two">
+          <div>
+            <label for="usdPrice">Precio del artículo (US$)</label>
+            <input id="usdPrice" type="number" min="0" step="0.01" placeholder="Ej: 19.99" />
+          </div>
+          <div>
+            <label for="qty">Cantidad</label>
+            <input id="qty" type="number" min="1" step="1" value="1" />
+          </div>
+        </div>
+        <div class="three">
+          <div>
+            <label for="rate">Tasa dólar (RD$ por US$)</label>
+            <input id="rate" type="number" min="1" step="0.01" value="70" />
+          </div>
+          <div>
+            <label for="fee">Servicio (%)</label>
+            <input id="fee" type="number" min="0" step="1" value="10" />
+          </div>
+          <div>
+            <label for="shipping">Envío estimado (RD$)</label>
+            <input id="shipping" type="number" min="0" step="1" value="200" />
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="three">
+          <div>
+            <label>Total (RD$)</label>
+            <input id="totalDOP" type="text" readonly />
+          </div>
+          <div>
+            <label>Anticipo 50% (RD$)</label>
+            <input id="deposit" type="text" readonly />
+          </div>
+          <div>
+            <label>Resto a la entrega (RD$)</label>
+            <input id="balance" type="text" readonly />
+          </div>
+        </div>
+        <div style="margin-top:12px;display:flex;gap:12px;flex-wrap:wrap">
+          <button id="btn-calc" class="btn" type="button">Calcular</button>
+          <button id="btn-copy" class="btn" type="button">Copiar resumen</button>
+        </div>
+        <p class="muted" style="font-size:12px;margin-top:6px">Los montos son estimados y pueden variar por cambios de tasa, impuestos o promociones.</p>
+      </div>
+
+      <!-- Formulario de pedido -->
+      <div class="card">
+        <h2>Hacer pedido</h2>
+        <form id="orderForm">
+          <div>
+            <label for="productUrl">Enlace del producto (SHEIN)</label>
+            <input id="productUrl" type="url" required placeholder="https://..." />
+          </div>
+          <div class="two">
+            <div>
+              <label for="size">Talla</label>
+              <input id="size" type="text" placeholder="Ej: M / 38" />
+            </div>
+            <div>
+              <label for="color">Color</label>
+              <input id="color" type="text" placeholder="Ej: Negro" />
+            </div>
+          </div>
+          <div class="two">
+            <div>
+              <label for="sku">SKU / Código (opcional)</label>
+              <input id="sku" type="text" />
+            </div>
+            <div>
+              <label for="notes">Notas (opcional)</label>
+              <input id="notes" type="text" placeholder="Instrucciones especiales" />
+            </div>
+          </div>
+          <div class="two">
+            <div>
+              <label for="customerName">Tu nombre</label>
+              <input id="customerName" type="text" required />
+            </div>
+            <div>
+              <label for="customerPhone">Tu WhatsApp</label>
+              <input id="customerPhone" type="tel" placeholder="8292767410" />
+            </div>
+          </div>
+          <div class="two">
+            <div>
+              <label for="delivery">Entrega</label>
+              <select id="delivery">
+                <option>Recoger en tienda</option>
+                <option>Envío a domicilio</option>
+              </select>
+            </div>
+            <div>
+              <label for="city">Ciudad</label>
+              <input id="city" type="text" placeholder="Santo Domingo" />
+            </div>
+          </div>
+          <div class="divider"></div>
+          <button class="btn primary" type="submit">Enviar por WhatsApp</button>
+          <p class="muted" style="font-size:12px">Al enviar aceptas nuestra política de servicio y reembolsos.</p>
+        </form>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="grid" style="grid-template-columns:1fr 1fr; margin-top:18px">
+      <div class="card">
+        <h2>Preguntas frecuentes</h2>
+        <details open>
+          <summary>¿Son oficiales de SHEIN?</summary>
+          <p class="muted">No. Somos intermediarios que realizamos la compra a tu nombre y coordinamos el envío. Respetamos las marcas y los Términos de Uso del sitio.</p>
+        </details>
+        <details>
+          <summary>¿Cómo calculan el precio final?</summary>
+          <p class="muted">Precio en US$ x tasa + servicio + envío interno. Impuestos o variaciones de tasa pueden cambiar el total final.</p>
+        </details>
+        <details>
+          <summary>¿Qué métodos de pago aceptan?</summary>
+          <p class="muted">Transferencia, efectivo y pago mixto. Se requiere 50% de anticipo para procesar el pedido.</p>
+        </details>
+      </div>
+      <div class="card">
+        <h2>Política breve</h2>
+        <ul style="color:var(--muted);line-height:1.8">
+          <li>Revisamos disponibilidad antes de cobrar.</li>
+          <li>Reembolsos aplican si el producto se agota antes de la compra.</li>
+          <li>Tiempo de entrega estimado se confirma por WhatsApp.</li>
+        </ul>
+        <div class="divider"></div>
+        <p class="muted" style="font-size:12px">“SHEIN” es marca registrada de sus respectivos titulares.</p>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="grid" style="grid-template-columns:1fr auto;align-items:center">
+        <div>© <span id="year"></span> Omii Shop · WhatsApp: <a id="waFooter" href="#">Contactar</a></div>
+        <a class="pill" href="#form">Hacer pedido</a>
+      </div>
+    </footer>
+  </main>
+
+  <div id="toast" class="toast">Resumen copiado ✅</div>
+
+  <script>
+    // ⚙️ CONFIGURA TU NÚMERO DE WHATSAPP AQUÍ (solo dígitos con código país)
+    // Ejemplo RD: 1 + 8xx + número = 1XXXXXXXXXX
+    const BUSINESS_PHONE = "1XXXXXXXXXX"; // ← reemplaza por tu número (formato internacional sin + ni espacios)
+
+    // Helpers
+    const $ = (sel) => document.querySelector(sel);
+    const money = (n) => new Intl.NumberFormat('es-DO', {style:'currency', currency:'DOP', maximumFractionDigits:0}).format(n || 0);
+    const encode = (s) => encodeURIComponent(s);
+
+    // Año en footer
+    $('#year').textContent = new Date().getFullYear();
+
+    // WhatsApp links
+    function waLinkWithText(text){
+      return `https://wa.me/${BUSINESS_PHONE}?text=${encode(text)}`;
+    }
+
+    function getCalc(){
+      const usd = parseFloat($('#usdPrice').value||0);
+      const qty = parseInt($('#qty').value||1);
+      const rate = parseFloat($('#rate').value||0);
+      const feePct = parseFloat($('#fee').value||0);
+      const shipping = parseFloat($('#shipping').value||0);
+      const subtotalUS = usd * qty;
+      const subtotalRD = subtotalUS * rate;
+      const fee = subtotalRD * (feePct/100);
+      const total = subtotalRD + fee + shipping;
+      const deposit = total * 0.5;
+      const balance = total - deposit;
+      return {total, deposit, balance, subtotalUS, subtotalRD, fee, shipping, rate, qty, usd};
+    }
+
+    function updateTotals(){
+      const {total, deposit, balance} = getCalc();
+      $('#totalDOP').value = money(total);
+      $('#deposit').value = money(deposit);
+      $('#balance').value = money(balance);
+    }
+
+    $('#btn-calc').addEventListener('click', updateTotals);
+
+    $('#btn-copy').addEventListener('click', () => {
+      const c = getCalc();
+      const summary = `Resumen de pedido\nTotal: ${money(c.total)} | Anticipo: ${money(c.deposit)} | Resto: ${money(c.balance)}\nTasa: RD$${c.rate} | Servicio: ${$('#fee').value}% | Envío: ${money(c.shipping)}`;
+      navigator.clipboard.writeText(summary).then(()=>{
+        const t = $('#toast'); t.style.display='block'; setTimeout(()=>t.style.display='none', 2000);
+      });
+    });
+
+    // Botón WhatsApp del héroe
+    $('#btn-whatsapp-hero').addEventListener('click', () => {
+      window.open(waLinkWithText('Hola, quiero cotizar un pedido de SHEIN 👗✨'), '_blank');
+    });
+
+    // Footer link
+    $('#waFooter').addEventListener('click',(e)=>{
+      e.preventDefault();
+      window.open(waLinkWithText('Hola, tengo una duda sobre mi pedido.'), '_blank');
+    });
+
+    // Submit del formulario: construye el mensaje
+    $('#orderForm').addEventListener('submit', (e)=>{
+      e.preventDefault();
+      updateTotals();
+      const c = getCalc();
+      const data = {
+        url: $('#productUrl').value.trim(),
+        size: $('#size').value.trim(),
+        color: $('#color').value.trim(),
+        sku: $('#sku').value.trim(),
+        notes: $('#notes').value.trim(),
+        name: $('#customerName').value.trim(),
+        phone: $('#customerPhone').value.trim(),
+        delivery: $('#delivery').value,
+        city: $('#city').value.trim()
+      };
+
+      if(!data.url){ alert('Por favor pega el enlace del producto de SHEIN.'); return; }
+      if(BUSINESS_PHONE.includes('X')){ alert('Configura tu número de WhatsApp en BUSINESS_PHONE.'); return; }
+
+      const msg = `🧾 *Pedido SHEIN*\n`+
+      `Cliente: ${data.name || '—'} (WhatsApp: ${data.phone || '—'})\n`+
+      `Entrega: ${data.delivery} · Ciudad: ${data.city || '—'}\n\n`+
+      `Producto: ${data.url}\n`+
+      `Talla: ${data.size || '—'} · Color: ${data.color || '—'} · SKU: ${data.sku || '—'}\n`+
+      `Notas: ${data.notes || '—'}\n\n`+
+      `Cantidad: ${c.qty} · Precio (US$): ${c.usd.toFixed(2)}\n`+
+      `Tasa: RD$${c.rate} · Servicio: ${$('#fee').value}% · Envío: ${money(c.shipping)}\n`+
+      `Total: ${money(c.total)} | Anticipo 50%: ${money(c.deposit)} | Resto: ${money(c.balance)}`;
+
+      window.open(waLinkWithText(msg), '_blank');
+    });
+
+    // Actualiza totales al cargar
+    updateTotals();
+  </script>
+</body>
+</html>
